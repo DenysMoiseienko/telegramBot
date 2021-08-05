@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import telegramBot.telegramBot.processors.Processor;
+import telegramBot.telegramBot.services.SendMessageService;
 
 @Component
 public class Bot extends TelegramLongPollingBot {
@@ -16,11 +16,11 @@ public class Bot extends TelegramLongPollingBot {
     @Value("${telegram.bot.token}")
     private String botToken;
 
-    private Processor processor;
+    private SendMessageService sendMessageService;
 
     @Autowired
-    public void setProcessor(Processor processor) {
-        this.processor = processor;
+    public void setSendMessageService(SendMessageService sendMessageService) {
+        this.sendMessageService = sendMessageService;
     }
 
     @Override
@@ -35,6 +35,6 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        processor.process(update);
+        sendMessageService.send(update.getMessage());
     }
 }
