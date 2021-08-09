@@ -1,0 +1,1 @@
+worker: java -jar build/libs/teleagramBot-0.0.1-SNAPSHOT.jar
