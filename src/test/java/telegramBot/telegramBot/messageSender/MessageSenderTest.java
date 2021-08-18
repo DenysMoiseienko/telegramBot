@@ -2,13 +2,11 @@ package telegramBot.telegramBot.messageSender;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.boot.test.context.SpringBootTest;
+import static org.mockito.Mockito.*;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import telegramBot.telegramBot.Bot;
 
-@SpringBootTest
 class MessageSenderTest {
 
     private MessageSender messageSender;
@@ -16,7 +14,7 @@ class MessageSenderTest {
 
     @BeforeEach
     public void init() {
-        bot = Mockito.mock(Bot.class);
+        bot = mock(Bot.class);
         messageSender = new MessageSenderImpl(bot);
     }
 
@@ -33,6 +31,6 @@ class MessageSenderTest {
 
         messageSender.sendMessage(sm);
 
-        Mockito.verify(bot).execute(sm);
+        verify(bot).execute(sm);
     }
 }
