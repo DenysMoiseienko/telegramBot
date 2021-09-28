@@ -1,11 +1,11 @@
 package telegramBot.telegramBot.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import telegramBot.telegramBot.weatherElements.Result;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
@@ -15,34 +15,31 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 @Service
-public class WeatherServiceImpl implements WeatherService {
+public class OpenWeatherMapClient {
 
     @Value("${open.weather.map.id}")
     private String appId;
 
-    private MessageSource messageSource;
+    private final MessageSource messageSource;
 
-    @Autowired
-    public void setMessageSource(MessageSource messageSource) {
+    public OpenWeatherMapClient(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
 
-    @Override
-    public Result getResponse(String message) throws IOException {
-        URL url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + message +
-                "&units=metric&appid=" + appId);
-        return new ObjectMapper().readValue(url, Result.class);
-    }
-
-    @Override
     public String getWeatherInfo(String message) {
         try {
             return createString(getResponse(message));
         }catch (FileNotFoundException e) {
-            return messageSource.getMessage("notFound", null, null);
+            return messageSource.getMessage("notFound", null, Locale.ENGLISH);
         } catch (IOException e) {
             return e.getMessage();
         }
+    }
+
+    private Result getResponse(String message) throws IOException {
+        var url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + message +
+                "&units=metric&appid=" + appId);
+        return new ObjectMapper().readValue(url, Result.class);
     }
 
     private String createString(Result result) {
@@ -64,7 +61,7 @@ public class WeatherServiceImpl implements WeatherService {
     }
 
     private String getTime(long time) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.ENGLISH)
+        var formatter = DateTimeFormatter.ofPattern("HH:mm", Locale.ENGLISH)
                 .withZone(ZoneId.of("UTC"));
         return formatter.format(Instant.ofEpochSecond(time));
     }

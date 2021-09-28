@@ -5,7 +5,7 @@
 ##### Technologies:
 
 ---
-- Java 8
+- Java 11
 - Spring Boot
 - Gradle
 - Telegram Bot API
@@ -14,7 +14,7 @@
 
 ##### Requirements:
 
-- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [JDK 11](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
 - [Gradle 7.1.1](https://docs.gradle.org/7.1.1/userguide/installation.html#installation)
 - [Telegram Bot API](https://core.telegram.org/bots) credentials (username and token)
 - [OpenWeatherMap API](https://openweathermap.org/api) credentials (API key)

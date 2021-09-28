@@ -6,7 +6,7 @@ plugins {
 
 group = 'telegramBot'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
@@ -17,13 +17,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.telegram:telegrambots-spring-boot-starter:5.3.0'
 	implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.9'
-
 }
 
 test {
 	useJUnitPlatform()
-}
-
-configurations {
-	testImplementation.exclude group: 'com.vaadin.external.google', module: 'android-json'
 }
