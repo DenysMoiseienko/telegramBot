@@ -37,15 +37,15 @@ public class OpenWeatherMapClient {
     }
 
     private Result getResponse(String message) throws IOException {
-        var url = new URL("http://api.openweathermap.org/data/2.5/weather?q=" + message +
-                "&units=metric&appid=" + appId);
+        String s = String.format("http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric&appid=%s", message, appId);
+        var url = new URL(s);
         return new ObjectMapper().readValue(url, Result.class);
     }
 
     private String createString(Result result) {
         String main = result.getName();
         double temp = result.getMain().getTemp();
-        String description = result.getWeather().stream().findFirst().get().getDescription();
+        String description = result.getWeather().get(0).getDescription();
         int pressure = result.getMain().getPressure();
         int humidity = result.getMain().getHumidity();
         String sunrise = getTime(Long.sum(result.getSys().getSunrise(), result.getTimezone()));
