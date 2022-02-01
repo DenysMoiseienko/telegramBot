@@ -1,6 +1,6 @@
 # telegramBot
 
-> The simple telegram weather bot. Bot is deployed to Heroku and available in telegram as @FamWeatherBot.
+> The simple telegram weather bot. Bot is deployed to Heroku and available in telegram as [@FamWeatherBot](https://t.me/FamWeatherBot)
 
 ##### Technologies:
 
