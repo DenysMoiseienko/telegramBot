@@ -22,3 +22,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+configurations {
+	testImplementation.exclude group: 'com.vaadin.external.google', module: 'android-json'
+}
