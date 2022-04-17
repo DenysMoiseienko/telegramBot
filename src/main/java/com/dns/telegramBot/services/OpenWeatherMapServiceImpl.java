@@ -15,17 +15,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 @Service
-public class OpenWeatherMapClient {
+public class OpenWeatherMapServiceImpl implements OpenWeatherMapService{
 
     @Value("${open.weather.map.id}")
     private String appId;
 
     private final MessageSource messageSource;
 
-    public OpenWeatherMapClient(MessageSource messageSource) {
+    public OpenWeatherMapServiceImpl(MessageSource messageSource) {
         this.messageSource = messageSource;
     }
 
+    @Override
     public String getWeatherInfo(String message) {
         try {
             return createString(getResponse(message));

@@ -1,7 +1,20 @@
 package com.dns.telegramBot.weatherElements;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+        "temp",
+        "feels_like",
+        "temp_min",
+        "temp_max",
+        "pressure",
+        "humidity",
+        "sea_level",
+        "grnd_level"
+})
 public class Main {
 
     @JsonProperty("temp")

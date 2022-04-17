@@ -1,6 +1,6 @@
 package com.dns.telegramBot;
 
-import com.dns.telegramBot.services.SendMessageService;
+import com.dns.telegramBot.services.SendMessageServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,13 +11,13 @@ import static org.mockito.Mockito.*;
 class BotTest {
 
     private Bot bot;
-    private SendMessageService sendMessageService;
+    private SendMessageServiceImpl sendMessageService;
     private Update update;
 
     @BeforeEach
     public void init() {
         update = mock(Update.class);
-        sendMessageService = mock(SendMessageService.class);
+        sendMessageService = mock(SendMessageServiceImpl.class);
         bot = new Bot(sendMessageService);
     }
 

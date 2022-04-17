@@ -1,6 +1,7 @@
 package com.dns.telegramBot;
 
 import com.dns.telegramBot.services.SendMessageService;
+import com.dns.telegramBot.services.SendMessageServiceImpl;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -18,7 +19,7 @@ public class Bot extends TelegramLongPollingBot {
 
     private final SendMessageService sendMessageService;
 
-    public Bot(SendMessageService sendMessageService) {
+    public Bot(SendMessageServiceImpl sendMessageService) {
         this.sendMessageService = sendMessageService;
     }
 
