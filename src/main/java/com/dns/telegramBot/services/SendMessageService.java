@@ -1,4 +1,4 @@
-package telegramBot.telegramBot.services;
+package com.dns.telegramBot.services;
 
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;

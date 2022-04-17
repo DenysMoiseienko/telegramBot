@@ -1,12 +1,11 @@
-package telegramBot.telegramBot;
+package com.dns.telegramBot;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.dns.telegramBot.services.SendMessageService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import telegramBot.telegramBot.services.SendMessageService;
 
 @Component
 public class Bot extends TelegramLongPollingBot {
@@ -17,10 +16,9 @@ public class Bot extends TelegramLongPollingBot {
     @Value("${telegram.bot.token}")
     private String botToken;
 
-    private SendMessageService sendMessageService;
+    private final SendMessageService sendMessageService;
 
-    @Autowired
-    public void setSendMessageService(SendMessageService sendMessageService) {
+    public Bot(SendMessageService sendMessageService) {
         this.sendMessageService = sendMessageService;
     }
 

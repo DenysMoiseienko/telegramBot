@@ -1,10 +1,10 @@
-package telegramBot.telegramBot.services;
+package com.dns.telegramBot.services;
 
+import com.dns.telegramBot.weatherElements.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
-import telegramBot.telegramBot.weatherElements.Result;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -32,7 +32,7 @@ public class OpenWeatherMapClient {
         }catch (FileNotFoundException e) {
             return messageSource.getMessage("notFound", null, Locale.ENGLISH);
         } catch (IOException e) {
-            return e.getMessage();
+            return "Something went wrong :(";
         }
     }
 
@@ -51,7 +51,7 @@ public class OpenWeatherMapClient {
         String sunrise = getTime(Long.sum(result.getSys().getSunrise(), result.getTimezone()));
         String sunset = getTime(Long.sum(result.getSys().getSunset(), result.getTimezone()));
 
-        return "<i>City: </i><b>" + main + "</b>\n" +
+        return "<i>Place: </i><b>" + main + "</b>\n" +
                 "<i>Temperature: </i><b>" + temp + " C</b>\n" +
                 "<i>Description: </i><b>" + description + "</b>\n" +
                 "<i>Pressure: </i><b>" + pressure + " Pa</b>\n" +
